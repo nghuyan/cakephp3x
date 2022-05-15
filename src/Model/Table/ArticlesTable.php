@@ -19,6 +19,9 @@ class ArticlesTable extends Table
             'joinTable' => 'articles_tags',
             'dependent' => true
         ]);
+        $this->belongsTo('Categories', [
+            'foreignKey' => 'category_id',
+        ]);
     }
 
     public function beforeSave($event, $entity, $options)
