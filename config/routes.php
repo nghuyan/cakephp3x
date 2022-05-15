@@ -106,3 +106,11 @@ Router::scope('/', function (RouteBuilder $routes) {
 Router::scope('/articles', function (RouteBuilder $routes) {
     $routes->connect('/tagged/*', ['controller' => 'Articles', 'action' => 'tags']);
 });
+
+Router::scope(
+    '/bookmarks',
+    ['controller' => 'Bookmarks'],
+    function ($routes) {
+        $routes->connect('/tagged/*', ['action' => 'tags']);
+    }
+);
