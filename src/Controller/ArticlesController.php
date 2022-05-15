@@ -44,10 +44,12 @@ class ArticlesController extends AppController
             }
             $this->Flash->error(__('Unable to add your article.'));
         }
-        // Get a list of tags.
+
         $tags = $this->Articles->Tags->find('list');
 
-        // Set tags to the view context
+        $categories = $this->Articles->Categories->find('treeList');
+        $this->set(compact('categories'));
+
         $this->set('tags', $tags);
         $this->set('article', $article);
     }
@@ -74,6 +76,9 @@ class ArticlesController extends AppController
         $this->set('tags', $tags);
 
         $this->set('article', $article);
+
+        $categories = $this->Articles->Categories->find('treeList');
+        $this->set(compact('categories'));
     }
 
     public function delete($slug)
