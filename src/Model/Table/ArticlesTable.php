@@ -108,4 +108,9 @@ class ArticlesTable extends Table
         }
         return $out;
     }
+
+    public function isOwnedBy($articleSlug, $userId)
+    {
+        return $this->exists(['slug' => $articleSlug, 'user_id' => $userId]);
+    }
 }

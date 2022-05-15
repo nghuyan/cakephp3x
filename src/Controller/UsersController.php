@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Users Controller
@@ -18,10 +19,10 @@ class UsersController extends AppController
         $this->Auth->allow(['logout']);
     }
 
-    public function logout()
+    public function beforeFilter(Event $event)
     {
-        $this->Flash->success('You are now logged out.');
-        return $this->redirect($this->Auth->logout());
+        parent::beforeFilter($event);
+        //$this->Auth->allow('add');
     }
 
     /**
@@ -126,5 +127,11 @@ class UsersController extends AppController
             }
             $this->Flash->error('Your username or password is incorrect.');
         }
+    }
+
+    public function logout()
+    {
+        $this->Flash->success('You are now logged out.');
+        return $this->redirect($this->Auth->logout());
     }
 }
